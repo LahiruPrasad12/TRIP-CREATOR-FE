@@ -55,7 +55,7 @@ const App = () => {
     formData.append('route_id', data.route_id);
 
     try {
-      const response = await axios.post('http://3.7.46.71:9000/upload/', formData, {
+      const response = await axios.post('/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
