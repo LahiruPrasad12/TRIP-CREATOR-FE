@@ -5,8 +5,8 @@
         "destination": "http://ec2-3-110-219-153.ap-south-1.compute.amazonaws.com/api/:path*"
       },
       {
-        "source": "/api/upload/",
-        "destination": "http://3.7.46.71:9000/upload"
+        "source": "/api/upload",
+        "destination": "http://3.7.46.71:9000/upload/"
       }
     ]
   }
