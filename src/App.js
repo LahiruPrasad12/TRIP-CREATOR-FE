@@ -31,8 +31,8 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const companiesResponse = await axios.get('http://ec2-3-110-219-153.ap-south-1.compute.amazonaws.com/api/companies');
-        const routesResponse = await axios.get('http://ec2-3-110-219-153.ap-south-1.compute.amazonaws.com/api/routes');
+        const companiesResponse = await axios.get('/companies');
+        const routesResponse = await axios.get('/routes');
         setCompanies(companiesResponse.data);
         setRoutes(routesResponse.data);
       } catch (error) {
