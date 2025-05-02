@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css'; // Optional: for custom styles
 
+// Validation schema
 const schema = yup.object().shape({
   num_of_passengers: yup.number().required("Number of passengers is required").positive().integer(),
   amount_per_passenger: yup.number().required("Amount per passenger is required").positive(),
@@ -62,6 +63,7 @@ const App = () => {
       toast.success('Upload successful!');
       reset();
       setPreview(null);
+      window.location.reload(); // Reload the page after success
     } catch (error) {
       toast.error('Upload failed!');
     } finally {
@@ -80,9 +82,9 @@ const App = () => {
           <Controller
             name="num_of_passengers"
             control={control}
-            render={({ field }) => <input {...field} type="number" />}
+            render={({ field }) => <input {...field} type="number" className="input-field" />}
           />
-          {errors.num_of_passengers && <p>{errors.num_of_passengers.message}</p>}
+          {errors.num_of_passengers && <p className="error-message">{errors.num_of_passengers.message}</p>}
         </div>
 
         <div className="form-group">
@@ -90,9 +92,9 @@ const App = () => {
           <Controller
             name="amount_per_passenger"
             control={control}
-            render={({ field }) => <input {...field} type="number" />}
+            render={({ field }) => <input {...field} type="number" className="input-field" />}
           />
-          {errors.amount_per_passenger && <p>{errors.amount_per_passenger.message}</p>}
+          {errors.amount_per_passenger && <p className="error-message">{errors.amount_per_passenger.message}</p>}
         </div>
 
         <div className="form-group">
@@ -100,9 +102,9 @@ const App = () => {
           <Controller
             name="from"
             control={control}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} className="input-field" />}
           />
-          {errors.from && <p>{errors.from.message}</p>}
+          {errors.from && <p className="error-message">{errors.from.message}</p>}
         </div>
 
         <div className="form-group">
@@ -110,9 +112,9 @@ const App = () => {
           <Controller
             name="to"
             control={control}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input {...field} className="input-field" />}
           />
-          {errors.to && <p>{errors.to.message}</p>}
+          {errors.to && <p className="error-message">{errors.to.message}</p>}
         </div>
 
         <div className="form-group">
@@ -121,7 +123,7 @@ const App = () => {
             name="company_id"
             control={control}
             render={({ field }) => (
-              <select {...field}>
+              <select {...field} className="select-field">
                 <option value="">Select Company</option>
                 {companies.map((company) => (
                   <option key={company.id} value={company.id}>
@@ -131,7 +133,7 @@ const App = () => {
               </select>
             )}
           />
-          {errors.company_id && <p>{errors.company_id.message}</p>}
+          {errors.company_id && <p className="error-message">{errors.company_id.message}</p>}
         </div>
 
         <div className="form-group">
@@ -140,7 +142,7 @@ const App = () => {
             name="route_id"
             control={control}
             render={({ field }) => (
-              <select {...field}>
+              <select {...field} className="select-field">
                 <option value="">Select Route</option>
                 {routes.map((route) => (
                   <option key={route.id} value={route.id}>
@@ -150,7 +152,7 @@ const App = () => {
               </select>
             )}
           />
-          {errors.route_id && <p>{errors.route_id.message}</p>}
+          {errors.route_id && <p className="error-message">{errors.route_id.message}</p>}
         </div>
 
         <div className="form-group">
@@ -167,6 +169,7 @@ const App = () => {
                   onChange(file);
                   setPreview(URL.createObjectURL(file));
                 }}
+                className="input-field"
               />
             )}
           />
@@ -175,10 +178,10 @@ const App = () => {
               <img src={preview} alt="Preview" height="100" />
             </div>
           )}
-          {errors.file && <p>{errors.file.message}</p>}
+          {errors.file && <p className="error-message">{errors.file.message}</p>}
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="submit-button" disabled={loading}>
           {loading ? 'Uploading...' : 'Submit'}
         </button>
       </form>
